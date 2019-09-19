@@ -1,0 +1,17 @@
+<!--Pricing Tables-->
+<section id="pricing" class="secondary-color text-center scrollto clearfix ">
+    <div class="row clearfix">
+
+        <div class="section-heading">
+            <h3>{{pricing.tagline}}</h3>
+            <h2 class="section-title">{{pricing.title}}</h2>
+        </div>
+
+        <!--Pricing Block-->
+        <app-products-list-item class="pricing-block col-3 wow fadeInUp" data-wow-delay="0.4s" *ngFor="let product of products" [class.featured]="product.featured" [product]="product">
+                {{ product.name }}
+        </app-products-list-item>
+        <!--End Pricing Block-->
+    </div>
+</section>
+<!--End of Pricing Tables-->

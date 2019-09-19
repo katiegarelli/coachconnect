@@ -1,0 +1,20 @@
+<div class="pricing-block-content">
+    <h3>{{product.name}}</h3>
+    <p class="pricing-sub">{{product.description}}</p>
+    <div class="pricing">
+        <div class="price"><span>{{currency}}</span>{{product.price}}</div>
+        <p>{{product.url}}</p>
+    </div>
+    <ul *ngFor="let item of product.features">
+        <li>{{item}}</li>
+    </ul>
+    <button class="button button--buy snipcart-add-item"
+        [attr.data-item-url]="product.url"
+        [attr.data-item-id]="product.id"
+        [attr.data-item-price]="product.price"
+        [attr.data-item-description]="product.description"
+        [attr.data-item-image]="product.image"
+        [attr.data-item-name]="product.name">
+        Add to cart
+    </button>
+</div>
