@@ -1,0 +1,37 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files (x86)\\Nodist\\v-x64\\8.11.1\\node.exe',
+1 verbose cli   'C:\\Program Files (x86)\\Nodist\\npmv\\4.0.5\\bin\\npm-cli.js',
+1 verbose cli   'run',
+1 verbose cli   'start' ]
+2 info using npm@4.0.5
+3 info using node@v8.11.1
+4 verbose run-script [ 'prestart', 'start', 'poststart' ]
+5 info lifecycle coach-connect-site@0.0.0~prestart: coach-connect-site@0.0.0
+6 warn lifecycle The node binary used for scripts is C:\Program Files (x86)\Nodist\bin\node.exe but npm is using C:\Program Files (x86)\Nodist\v-x64\8.11.1\node.exe itself. Use the `--scripts-prepend-node-path` option to include the path for the node binary npm was executed with.
+7 silly lifecycle coach-connect-site@0.0.0~prestart: no script for prestart, continuing
+8 info lifecycle coach-connect-site@0.0.0~start: coach-connect-site@0.0.0
+9 verbose lifecycle coach-connect-site@0.0.0~start: unsafe-perm in lifecycle true
+10 verbose lifecycle coach-connect-site@0.0.0~start: PATH: C:\Program Files (x86)\Nodist\npmv\4.0.5\bin\node-gyp-bin;C:\DEV\Coach Connect\CoachConnectSite\node_modules\.bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Java\jdk1.7.0_80\bin;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Nodist\bin;C:\Users\Katie\AppData\Local\Microsoft\WindowsApps;;C:\Users\Katie\AppData\Local\Programs\Microsoft VS Code\bin
+11 verbose lifecycle coach-connect-site@0.0.0~start: CWD: C:\DEV\Coach Connect\CoachConnectSite
+12 silly lifecycle coach-connect-site@0.0.0~start: Args: [ '/d /s /c', 'ng serve' ]
+13 verbose stack Error: kill ENOSYS
+13 verbose stack     at Object._errnoException (util.js:1022:11)
+13 verbose stack     at process.kill (internal/process.js:183:18)
+13 verbose stack     at process.listener (C:\Program Files (x86)\Nodist\npmv\4.0.5\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:86:15)
+13 verbose stack     at emitNone (events.js:111:20)
+13 verbose stack     at process.emit (events.js:208:7)
+13 verbose stack     at processEmit (C:\Program Files (x86)\Nodist\npmv\4.0.5\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:146:32)
+13 verbose stack     at processEmit (C:\Program Files (x86)\Nodist\npmv\4.0.5\node_modules\npm-registry-client\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:146:32)
+13 verbose stack     at Signal.wrap.onsignal (internal/process.js:208:44)
+14 verbose cwd C:\DEV\Coach Connect\CoachConnectSite
+15 error Windows_NT 10.0.17763
+16 error argv "C:\\Program Files (x86)\\Nodist\\v-x64\\8.11.1\\node.exe" "C:\\Program Files (x86)\\Nodist\\npmv\\4.0.5\\bin\\npm-cli.js" "run" "start"
+17 error node v8.11.1
+18 error npm  v4.0.5
+19 error code ENOSYS
+20 error errno ENOSYS
+21 error syscall kill
+22 error kill ENOSYS
+23 error If you need help, you may report this error at:
+23 error     <https://github.com/npm/npm/issues>
+24 verbose exit [ 1, true ]
