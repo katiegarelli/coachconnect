@@ -1,0 +1,57 @@
+<div id="new-user">
+    <h1 class="center">
+        Welcome to Coach Connect!
+    </h1>
+    <img class="logo" src="assets/images/circle.png"/>
+
+    <div class="row">
+        <h4 class="p-heading p-large center">We're so happy you're making the right moves toward being the best athlete you can be.</h4>
+        <h4 class="p-heading p-large center">Getting started is as easy as CCS!</h4>
+    </div>
+
+    <div id="services" class="cards-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 no-float">
+
+                    <!-- Card -->
+                    <div class="card" (click)="clickedCard('create')">
+                        <img class="card-image" src="assets/images/C.png" alt="alternative">
+                        <div class="card-body">
+                            <h4 class="card-title">Create</h4>
+                            <p>Create a user profile to be able to store your videos, access coaches, and More!</p>
+                        </div>
+                    </div>
+                    <!-- end of card -->
+
+                    <!-- Card -->
+                    <div class="card" id="card2" (click)="clickedCard('credits')">
+                        <img class="card-image" src="assets/images/C.png" alt="alternative">
+                        <div class="card-body">
+                            <h4 class="card-title">Credits</h4>
+                            <p>Purchase credits so you have access to upload your videos for review</p>
+                        </div>
+                    </div>
+                    <!-- end of card -->
+
+                    <!-- Card -->
+                    <div class="card card3" (click)="clickedCard('submit')">
+                        <img class="card-image" src="assets/images/S.png" alt="alternative">
+                        <div class="card-body">
+                            <h4 class="card-title">Submit</h4>
+                            <p>Submit Videos to get recorded feedback from our expert coaches</p>
+                        </div>
+                    </div>
+                    <!-- end of card -->
+
+                    <div class="row newLine">
+                        <h4 class="center">Once you upload videos they will be displayed in the table below.</h4>
+                        <mat-icon class="center" >keyboard_arrow_down</mat-icon>
+                    </div>
+                    
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div>
+</div>
+

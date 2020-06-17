@@ -1,0 +1,8 @@
+<div class="col-2" *ngIf="selectedVideo$ | async as selectedRow">
+  <div class="video-surround" *ngIf="auth.userDoc$ | async as user">
+    <div *ngIf="selectedRow.contentLocation">
+        <app-vimeo-player #vimeoPlayer [data]="data" (timeChange)="updateData($event)" [videoId]="selectedRow.contentLocation"></app-vimeo-player>
+        <app-audio-recorder *ngIf="selectedRow.reviewStatus === 'P' && user.role === 'coach'" [data]="recorderData" [videoId]="selectedRow.id" (startedRecording)="receiveRecordingEvent($event)"></app-audio-recorder>
+    </div>
+  </div>
+</div>

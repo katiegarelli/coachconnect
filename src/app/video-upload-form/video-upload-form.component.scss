@@ -1,0 +1,23 @@
+mat-form-field {
+    width: 100%;
+}
+
+mat-slider {
+  width: 100%;
+}
+
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+  }
+
+.center{
+  align-items: center;
+  display: block;
+  margin: auto;
+}

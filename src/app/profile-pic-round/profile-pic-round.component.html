@@ -1,0 +1,60 @@
+<span *ngIf="auth.userDoc$ | async as user">
+
+  <!-- Normal Profile Picture Mode -->
+  <span *ngIf="user | getProfilePictureUrl | async as imageUrl" [ngClass]="{'hide': (!editmode && pictureChanged && !savedImageUrl)}">
+    <span *ngIf="!editmode">
+      <mat-spinner [ngClass]="{'hidden': !isLoading}"></mat-spinner>                
+      <img class="circular--square" id="profile-img" [src]="getImageUrl(imageUrl)" [ngClass]="{'hidden': isLoading}" (load)="this.isLoading = false;"/>
+      <div class="row clearfix">
+        <button (click)="edit()" pull-right matTooltip="edit" mat-button>
+            <mat-icon mat-list-icon>edit</mat-icon>    
+        </button>
+      </div>
+    </span>
+  </span>
+
+  <!-- Upload file Mode -->
+  <span *ngIf="editmode && !pictureChanged">
+
+    <div class="dropzone"
+      dropzone
+      (hovered)="toggleHover($event)"
+      (dropped)="onDrop($event)"
+      [class.hovering]="isHovering">
+
+      <p>Drag and Drop a File</p>
+      <div class="file">
+          <label class="file-label">
+              <input class="file-input" type="file" (change)="onDrop($event.target.files)">
+          </label>
+      </div>
+    </div>
+
+    <div class="row clearfix">
+      <button (click)="cancel()" pull-right matTooltip="Cancel" mat-button>
+        <mat-icon mat-list-icon>cancel_presentation</mat-icon>   
+      </button>
+    </div>
+  </span>
+
+  <!-- Cropper -->
+  <span *ngIf="editmode">
+    <img-cropper class="hide-overflow" [ngClass]="{'hide': !pictureChanged, 'show': pictureChanged}" #cropper [image]="data" [settings]="cropperSettings"></img-cropper><br />
+  
+    <div class="row clearfix" *ngIf="pictureChanged">
+      <button (click)="cancel()" pull-right matTooltip="Cancel" mat-button>
+        <mat-icon mat-list-icon>cancel_presentation</mat-icon>   
+      </button>
+      <button (click)="save(user.uid, user.photoURL)" pull-right matTooltip="save" mat-button>
+        <mat-icon mat-list-icon>save</mat-icon>   
+      </button>
+    </div>
+  
+  </span>
+
+  <!-- Spinner -->
+  <span *ngIf="!editmode && pictureChanged && !savedImageUrl">
+    <mat-spinner></mat-spinner>
+  </span>
+
+</span>

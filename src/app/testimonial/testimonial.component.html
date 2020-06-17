@@ -1,5 +1,5 @@
 <!--Testimonials-->
-<aside id="testimonials" class="scrollto text-center" data-enllax-ratio=".2">
+<aside id="testimonials" class="text-center" data-enllax-ratio=".2">
 
     <div class="row clearfix">
 
@@ -10,9 +10,12 @@
 
         <!--User Testimonials-->
         <blockquote class="col-3 testimonial classic" *ngFor="let feedback of testimonials.feedbacks">
-            <img src="assets/images/user-images/{{feedback.image}}" alt="User"/>
-            <q>{{feedback.comments}}</q>
-            <footer>{{feedback.name}} - {{feedback.company}}</footer>
+            <div class="wow fadeInUp"  data-wow-delay="0.1s">
+                <mat-spinner [ngClass]="{'hidden': !isLoading}"></mat-spinner>                    
+                <img src="assets/images/{{feedback.image}}" [ngClass]="{'hidden': isLoading}" (load)="this.isLoading = false;"/>
+                <q>{{feedback.comments}}</q>
+                <footer>{{feedback.name}} - {{feedback.company}}</footer>
+            </div>
         </blockquote>
         <!-- End of Testimonials-->
 

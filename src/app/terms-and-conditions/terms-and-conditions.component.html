@@ -1,0 +1,18 @@
+<div mat-dialog-content>
+    <h1>Terms and Conditions</h1>
+    <mat-spinner [ngClass]="{'hidden': !isLoading1}"></mat-spinner>
+    <img class="terms-img" src="assets/images/terms-1-min.png"[ngClass]="{'hidden': isLoading1}" (load)="this.isLoading1 = false;"/>
+    <mat-spinner [ngClass]="{'hidden': !isLoading2}"></mat-spinner>
+    <img class="terms-img" src="assets/images/terms-2-min.png"[ngClass]="{'hidden': isLoading2}" (load)="this.isLoading2 = false;"/>
+    <mat-spinner [ngClass]="{'hidden': !isLoading3}"></mat-spinner>
+    <img class="terms-img" src="assets/images/terms-3-min.png"[ngClass]="{'hidden': isLoading3}" (load)="this.isLoading3 = false;"/>
+    <mat-spinner [ngClass]="{'hidden': !isLoading4}"></mat-spinner>
+    <img class="terms-img" src="assets/images/terms-4-min.png"[ngClass]="{'hidden': isLoading4}" (load)="this.isLoading4 = false;"/>
+    <mat-spinner [ngClass]="{'hidden': !isLoading5}"></mat-spinner>
+    <img class="terms-img" src="assets/images/terms-5-min.png"[ngClass]="{'hidden': isLoading5}" (load)="this.isLoading5 = false;"/>
+    <mat-spinner [ngClass]="{'hidden': !isLoading6}"></mat-spinner>
+    <img class="terms-img" src="assets/images/terms-6-min.png"[ngClass]="{'hidden': isLoading6}" (load)="this.isLoading6 = false;"/>
+    <button pull-right mat-dialog-close matTooltip="Cancel" mat-button>
+        Close  
+    </button>
+</div>

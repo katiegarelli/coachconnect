@@ -1,0 +1,120 @@
+<form *ngIf="auth.userDoc$ | async as user" class="example-container"  #VideoUploadForm="ngForm">
+  <div mat-dialog-content *ngIf="!loading; else loadingTmpl">
+    <h1>Upload a Video for a Coach to Review</h1>
+    <app-uploader #uploader (videosUploadedEvent)="receiveVideos($event)"></app-uploader>
+    <span *ngFor="let prop of data | keys" ngSwitch="{{prop.key}}">      
+      <mat-form-field *ngSwitchCase="'comments'">
+          <textarea required matInput maxlength="500" [(ngModel)]="prop.value" name="{{prop.key}}" placeholder="{{prop.key | label}}"></textarea>
+      </mat-form-field>
+      <mat-form-field *ngSwitchCase="'opponent'">
+        <input type="text" required matInput maxlength="200" [(ngModel)]="prop.value" name="{{prop.key}}" placeholder="{{prop.key | label}}">
+      </mat-form-field>
+      <div *ngSwitchCase="'home'">
+        <label>Home vs. Away *</label>
+        <mat-radio-group required class="example-radio-group" matInput [(ngModel)]="prop.value" name="{{prop.key}}">
+          <mat-radio-button class="example-radio-button" value="true">Home</mat-radio-button>
+          <mat-radio-button class="example-radio-button" value="false">Away</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <span *ngSwitchCase="'weight'">
+        <h6 id="slider-title">{{prop.key | label}}*</h6>
+        <mat-slider matInput
+            [max]="300"
+            [min]="0"
+            [step]=".1"
+            [thumbLabel]="true"
+            [tickInterval]="1"
+            [(ngModel)]="prop.value"
+            name="{{prop.key}}">
+        </mat-slider>
+        {{prop.value}} lbs
+      </span>
+      <span *ngSwitchCase="'scoreW'">
+        <h6 id="slider-title">Match Score *</h6>
+        <mat-slider matInput
+            [max]="50"
+            [min]="0"
+            [step]="1"
+            [thumbLabel]="true"
+            [tickInterval]="1"
+            [(ngModel)]="prop.value"
+            name="{{prop.key}}">
+        </mat-slider>
+        <span>
+          {{prop.value}} to 
+        </span>
+      </span>
+      <span *ngSwitchCase="'scoreL'">
+        <span>
+          {{prop.value}} 
+        </span>
+        <mat-slider matInput
+            [max]="50"
+            [min]="0"
+            [step]="1"
+            [thumbLabel]="true"
+            [tickInterval]="1"
+            [(ngModel)]="prop.value"
+            name="{{prop.key}}">
+        </mat-slider>
+      </span>
+
+      <div id="checkbox" *ngSwitchCase="'pin'">
+        Did this Match End in a Pin? 
+        <mat-checkbox [(ngModel)]="prop.value" name="{{prop.key}}"></mat-checkbox>
+      </div>
+
+      <mat-form-field *ngSwitchCase="'matchDate'">
+        <input id="date-input-field" (click)="picker.open()" name="{{prop.key}}" required matInput [matDatepicker]="picker" placeholder="{{prop.key}}" [(ngModel)]="prop.value" readonly>
+        <mat-datepicker-toggle matSuffix [for]="picker">
+            <mat-icon matDatepickerToggleIcon>date_range</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <div *ngSwitchCase="'outcome'">
+        <label>Match Outcome *</label>
+        <mat-radio-group required class="example-radio-group" matInput [(ngModel)]="prop.value" name="{{prop.key}}">
+          <mat-radio-button class="example-radio-button" value="W">Win</mat-radio-button>
+          <mat-radio-button class="example-radio-button" value="L">Loss</mat-radio-button>
+          <mat-radio-button class="example-radio-button" value="T">Tie</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <mat-form-field *ngSwitchCase="'reviewer'" >
+        <mat-label>Coach</mat-label>
+        <span>
+          <mat-select matNativeControl required matInput appUnavailable appCanPurchase="{{user.credits}}" [(ngModel)]="prop.value" #name="ngModel" name="{{prop.key}}">
+            <mat-option *ngFor="let coach of auth.coachesMap$ | async | getCoachList" value="{{coach | coachDropdownId}}|{{coach | coachDropdownName}}|{{coach | coachDropdownPrice}}|{{coach | coachDropdownStatus}}">{{coach | coachDropdownName}} : {{coach | coachDropdownPrice}} credits</mat-option>
+          </mat-select>
+        </span>
+        <mat-error *ngIf="name.errors && name.errors.coachInactive">
+          This coach is really popular at the moment - please check back at a later time or select a different coach. 
+        </mat-error>
+        <mat-error *ngIf="name.errors && name.errors.forbiddenPurchase">
+          Please purchase more credits in order to choose this coach. You currently have {{name.errors.forbiddenPurchase.yourCredits}} credits and this coach requires {{name.errors.forbiddenPurchase.coachCredits}} credits. 
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field *ngSwitchDefault>
+          <input matInput required [(ngModel)]="prop.value" name="{{prop.key}}" maxlength="100" placeholder="{{prop.key | label}}">
+      </mat-form-field>
+    </span>
+
+    <button [disabled]="loading" pull-right mat-dialog-close matTooltip="Cancel" mat-button>
+      <mat-icon mat-list-icon>cancel_presentation</mat-icon>   
+    </button>
+    <button pull-right (click)="submitVideoUpload(VideoUploadForm)" [disabled]="!(VideoUploadForm.form.valid && videoUploaded) || loading" matTooltip="save" mat-button>
+      <mat-icon mat-list-icon>save</mat-icon>   
+    </button>
+  </div>
+
+  <ng-template #loadingTmpl>
+      <div class="center">Your Video is Being Uploaded... We're so excited to connect you with one of our awesome coaches</div>
+      <mat-spinner class="center"></mat-spinner>
+
+      <button [disabled]="loading" pull-right mat-dialog-close matTooltip="Cancel" mat-button>
+        <mat-icon mat-list-icon>cancel_presentation</mat-icon>   
+      </button>
+      <button pull-right (click)="submitVideoUpload(VideoUploadForm)" [disabled]="!(VideoUploadForm.form.valid && videoUploaded) || loading" matTooltip="save" mat-button>
+        <mat-icon mat-list-icon>save</mat-icon>   
+      </button>
+  </ng-template>
+</form>

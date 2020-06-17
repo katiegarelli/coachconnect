@@ -1,0 +1,48 @@
+#platform-component {
+    padding-top: 80px; 
+    height: 100%;
+    width: 100%;
+}
+
+::ng-deep {
+    .verify-email {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+}
+
+#confirmation-div {
+    margin-top: 20px;
+}
+
+.example-sidenav {
+    padding: 20px;
+}
+
+.menu-icon-btn {
+    background-color:#DCDCDC;
+    display: block;
+}
+
+.nav-button {
+    display: block;
+}
+
+mat-divider {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.goldText{
+    color: #d2b356;
+}
+
+.logo-icon {
+    height: 20px;
+    padding-bottom: 5px;
+}
+  
+#short-user-menu{
+    background: #d3d3d369;
+}

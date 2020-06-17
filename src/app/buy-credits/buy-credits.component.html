@@ -1,0 +1,20 @@
+<div id="dialog-content" mat-dialog-content>
+    <h1 mat-dialog-title>Purchase Credits</h1>
+    <h6 id="slider-title">How Many Credits Would you Like to Buy?</h6>
+    <h6 id="slider-title">Navigate to the Coaches tab to see how many credits each coach is charging for a review.</h6>
+    
+    <mat-slider matInput
+        class="example-margin"
+        [max]="500"
+        [min]="1"
+        [step]="1"
+        [thumbLabel]="true"
+        [tickInterval]="1"
+        [(ngModel)]="creditsToBuy">
+    </mat-slider>
+
+    <app-elements [amount]="creditsToBuy * 100" description="Credits to purchase" (loadingPurchase)="updateloadingPurchase($event)"></app-elements>
+    <button pull-right mat-dialog-close matTooltip="Cancel" mat-button [disabled]="loading">
+        <mat-icon mat-list-icon>cancel_presentation</mat-icon>   
+    </button>
+</div>

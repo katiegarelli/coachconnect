@@ -1,0 +1,13 @@
+<mat-card class="verify-email">
+    <mat-card-content fxLayout="column" fxLayoutAlign="center center">
+      <mat-icon>email</mat-icon>
+      <p class="title" fxLayout="column" fxLayoutAlign="center center">
+          <span class="mat-subheading-2">Confirm your e-mail address!</span>
+          <span class="mat-body-2">{{ email }}</span>
+        </p>
+        <p class="subtitle">A confirmation e-mail has been sent. Check your inbox and click on the link "Confirm my e-mail" to confirm your e-mail address.</p>
+    </mat-card-content>
+    <mat-card-actions fxLayout="column" fxLayoutAlign="center center">
+      <button mat-stroked-button (click)="auth.sendNewVerificationEmail()" class="send-new-mail-button action-button">Send new Confirmation Email</button>
+    </mat-card-actions>
+</mat-card>

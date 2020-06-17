@@ -1,0 +1,12 @@
+<div mat-dialog-content>
+{{data.message}}
+</div>
+
+<mat-spinner [ngClass]="{'hidden': !isLoading}"></mat-spinner>
+<img src="{{data.imgSrc}}" class="helper-image" [ngClass]="{'hidden': isLoading}" (load)="this.isLoading = false;"/>
+
+<mat-dialog-actions align="end">
+    <button *ngIf="data.cancelButton" pull-right mat-dialog-close matTooltip="Cancel" mat-button>
+            {{data.cancelButton}}   
+    </button>
+</mat-dialog-actions>

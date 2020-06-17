@@ -1,0 +1,16 @@
+<div *ngIf="auth.userDoc$ | async as user; else loginTmpl">
+    <div class="empty-div-300" ></div>
+</div>
+
+<ng-template #loginTmpl>
+    <ngx-auth-firebaseui-login id="login"
+        [tabIndex]="1" 
+        [providers]="[]"
+        goBackURL="/signOut"
+        (onSuccess)="loginSuccess($event)"
+        (onError)="loginError($event)"
+        (onCreateAccountRequested)="registerAccount($event)"
+        [resetPasswordEnabled]="true"
+        (onResetPasswordRequested)="resetPassword($event)">
+    </ngx-auth-firebaseui-login>
+</ng-template>

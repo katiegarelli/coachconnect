@@ -1,0 +1,26 @@
+<div *ngIf="!video; else viewerTmpl" class="dropzone"
+    dropzone
+    (hovered)="toggleHover($event)"
+    (dropped)="onDrop($event)"
+    [class.hovering]="isHovering">
+
+    <h3>DropZone </h3>
+    <p>Drag and Drop a File</p>
+    <div class="file">
+        <label class="file-label">
+            <input class="file-input" type="file" (change)="onDrop($event.target.files)">
+        </label>
+    </div>
+</div>
+
+<ng-template #viewerTmpl>
+    <!-- <mat-spinner [ngClass]="{'hidden': !videoUploadloading}"></mat-spinner> -->
+
+    <span>{{video.file.name}}</span>
+
+    <!-- <video #videoViewer class="video" *ngIf="video && video.videoURL" [src]="video.videoURL | safeHtml: 'url'" (loadedmetadata)="videoChange($event, videoViewer)"></video> -->
+    <button *ngIf="video && video.videoURL" mat-button (click)="removeVideo()">
+        <mat-icon>delete_forever</mat-icon>
+    </button>
+    
+</ng-template>

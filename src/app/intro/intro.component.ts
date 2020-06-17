@@ -4,11 +4,11 @@ import { ConfigService } from '../config.service';
 @Component({
   selector: 'app-intro',
   templateUrl: './intro.component.html',
-  styleUrls: ['./intro.component.sass']
+  styleUrls: ['./intro.component.scss']
 })
 export class IntroComponent implements OnInit {
 
-  intro = {};
+  intro;
 
   constructor(private config: ConfigService) { }
 

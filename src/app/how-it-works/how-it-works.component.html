@@ -1,0 +1,63 @@
+<section id="how-it-works">
+    <div class="row">
+        <h1 class="section-title center">Getting started is as easy as CCS!</h1>
+    </div>
+
+
+    <!-- <mat-divider id="divider"></mat-divider> -->
+
+    <div class="table-row  wow fadeInLeft">
+        <div class="desc col-3">
+            <mat-spinner [ngClass]="{'hidden': !isLoading}"></mat-spinner>                
+            <img class="description-image" src="assets/images/C.png" alt="alternative" [ngClass]="{'hidden': isLoading}" (load)="this.isLoading = false;">
+            <h4 class="card-title">Create</h4>
+            <p>Create a user profile to be able to store your videos, access coaches, and More!</p>
+            <p>This information is important so that we can keep you up to date </p>
+            <p>on the status of your video reviews!</p>
+            <button class="rcorners2" mat-button (click)="navToLogin()">
+                Create an Account 
+                <mat-icon>arrow_right_alt</mat-icon>
+            </button>
+        </div>
+        <div class="col-2-3">
+            <img src="assets/images/create-account.PNG"/>
+        </div>
+    </div>
+
+    <div class="table-row  wow fadeInRight">
+        <div class="desc col-3">
+            <img class="description-image" src="assets/images/C.png" alt="alternative">
+            <h4 class="card-title">Credits</h4>
+            <p>Purchase credits so you have access to upload your videos for review.</p>
+            <p>Each Coach sets their own price so be sure to checkout the coaches</p>
+            <p>page to see how much each coach charges for a review.</p>
+            <p>***Note that review prices are subject to change***</p>
+            <button class="rcorners2" mat-button (click)="navToCoaches()">
+                Checkout Our Coaches
+                <mat-icon>arrow_right_alt</mat-icon>
+            </button>
+        </div>
+        <div class="col-2-3">
+            <img id="credits-img" src="assets/images/purchase-credits.PNG"/>
+        </div>
+    </div>
+
+    <div class="table-row  wow fadeInLeft">
+        <div class="desc col-3">
+            <img class="description-image" src="assets/images/S.png" alt="alternative">
+            <h4 class="card-title">Submit</h4>
+            <p>Submit Videos to get audio feedback from our expert coaches!</p>
+            <p>As soon as your video is submitted, </p>
+            <p>your coach of choice will be notified so that they can begin reviewing your video.</p>
+            <p>You will be notified via text and/or email as soon as your video is complete.</p>
+            <button class="rcorners2" mat-button (click)="navToPlatform()">
+                Submit a Video
+                <mat-icon>arrow_right_alt</mat-icon>
+            </button>
+        </div>
+        <div class="col-2-3">
+            <img src="assets/images/upload-video.PNG"/>
+        </div>
+    </div>
+
+</section>

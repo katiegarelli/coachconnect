@@ -1,0 +1,112 @@
+
+<form class="example-container row clearfix" (ngSubmit)="onSubmit(ProfileInfoForm)" #ProfileInfoForm="ngForm">
+    <img id="registration-logo" src="assets/images/logo-icon.png"/>
+    <h2 class="center" >Welcome</h2>
+    <h2 class="center">Let's get you connected!</h2>
+    <mat-form-field>
+        <input matInput class="form-control" [(ngModel)]="email" name="email" #emailValue="ngModel" maxlength="64" placeholder="Email" required email/>
+        <mat-icon matSuffix>email</mat-icon>
+        <mat-error *ngIf="emailValue.invalid && (emailValue.dirty || emailValue.touched) && emailValue.errors.required">
+            Email is Required
+        </mat-error>
+        <mat-error *ngIf="emailValue.invalid && (emailValue.dirty || emailValue.touched) && emailValue.errors.email">
+            Please enter a valid Email
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input name="password" [type]="togglePass.type" maxlength="20" minlength="8" [(ngModel)]="password" matInput type="password" placeholder="Password" #passwordValue="ngModel" required/>
+        <mat-pass-toggle-visibility #togglePass matSuffix></mat-pass-toggle-visibility>
+        <mat-icon matSuffix>lock</mat-icon>
+        <mat-error *ngIf="passwordValue.invalid && (passwordValue.dirty || passwordValue.touched) && passwordValue.errors.required">
+            A password is required to create an Account
+        </mat-error>
+        <mat-error *ngIf="passwordValue.invalid && (passwordValue.dirty || passwordValue.touched) && passwordValue.errors.maxlength">
+            Password cannot be more than 20 characters
+        </mat-error>
+        <mat-error *ngIf="passwordValue.invalid && (passwordValue.dirty || passwordValue.touched) && passwordValue.errors.minlength">
+            Password must be at least 8 characters
+        </mat-error>
+    </mat-form-field>
+
+    <h6>Strength</h6>
+    <mat-password-strength #passwordStrength
+        [min]="8"
+        [max]="20"
+        [enableLengthRule]="true"
+        [enableLowerCaseLetterRule]="true"
+        [enableUpperCaseLetterRule]="true"
+        [enableDigitRule]="true"
+        [password]="passwordValue.value"
+        [externalError]="passwordValue.dirty">
+    </mat-password-strength>
+
+    <mat-divider id="divider"></mat-divider>
+
+    <mat-form-field>
+        <input matInput  [(ngModel)]="displayName"  name="displayName" maxlength="100" placeholder="First Name" required>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput [(ngModel)]="lastName"  name="lastName" maxlength="100" placeholder="Last Name" required>
+    </mat-form-field>   
+    +1 (     
+    <mat-form-field id="width-sm">
+        <input matInput class="width-80"[(ngModel)]="phoneNumberA" name="phoneNumberA" maxlength="3"  minlength="3" placeholder="Phone" required>
+    </mat-form-field>
+    ) -
+    <mat-form-field id="width-sm">
+        <input matInput class="width-80" [(ngModel)]="phoneNumberB" name="phoneNumberB" maxlength="3"  minlength="3" required>
+    </mat-form-field>
+    -
+    <mat-form-field id="width-md">
+        <input matInput class="width-80" [(ngModel)]="phoneNumberC" name="phoneNumberC" maxlength="4"  minlength="4" required>
+    </mat-form-field>
+    <mat-form-field>
+        <input id="date-input-field" (click)="picker.open()" name="dob" required matInput [matDatepicker]="picker" placeholder="Birthday" [(ngModel)]="dob" readonly>
+        <mat-datepicker-toggle matSuffix [for]="picker">
+            <mat-icon matDatepickerToggleIcon>date_range</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker [startAt]="dob" #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput  [(ngModel)]="address1"  name="address1" maxlength="100" placeholder="Address (Line 1)" required>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput  [(ngModel)]="address2"  name="address2" maxlength="100" placeholder="Address (Line 2)">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput  [(ngModel)]="City"  name="City" maxlength="100" placeholder="City" required>
+    </mat-form-field>
+    <mat-form-field>
+        <input type="text" matInput  [(ngModel)]="State" name="State" placeholder="State" [matAutocomplete]="autoGroup" required>
+            <mat-autocomplete #autoGroup="matAutocomplete">
+            <mat-optgroup *ngFor="let group of stateGroupOptions | async" [label]="group.letter">
+                <mat-option *ngFor="let name of group.names">
+                name
+                </mat-option>
+            </mat-optgroup>
+        </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput  [(ngModel)]="Zip"  name="Zip" maxlength="100" placeholder="Zip" required>
+    </mat-form-field>
+    
+    <div id="checkbox">
+        <mat-checkbox [(ngModel)]="agreedToTerms" name="terms"></mat-checkbox>
+        I agree to the 
+        <span id="terms-link" (click)="launchTerms()">
+            Terms and Conditions
+        </span>
+    </div>
+
+
+    <div id="create-account-div" (click)="clickDisabled(!ProfileInfoForm.form.valid, agreedToTerms)">
+        <button class="rcorners2" type="submit" [disabled]="!ProfileInfoForm.form.valid || !agreedToTerms" mat-button>
+            Create Account   
+        </button>
+    </div>
+    <button pull-right (click)="backToLogin()" mat-button>
+        Back to Login  
+    </button>
+
+</form>

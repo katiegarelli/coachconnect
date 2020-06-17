@@ -1,20 +1,26 @@
 <!--Banner Content-->
-<header id="banner" class="scrollto clearfix" data-enllax-ratio=".5">
-    <app-navigation></app-navigation>
+<header id="banner" class="clearfix" data-enllax-ratio=".5">
     <div id="banner-content" class="row clearfix">
 
-        <div class="col-38">
-
-            <div class="section-heading">
-                <h1>{{header.heading}}</h1>
-                <h2>{{header.headingtext}}</h2>
+        <div class="col-30">
+            <div id="header-div" *ngIf="auth.userDoc$ | async as user; else loginTmpl">
+                <div class="section-heading">
+                    <!-- <h1>{{header.heading}}</h1> -->
+                    <img id="front-page-img" src="assets/images/CCS-front-page.png" alt="Dancer"/>
+                    <h2>{{header.headingtext}}</h2>
+                </div>
             </div>
 
-            <!--Call to Action-->
-            <a href="{{header.buttonlink}}" class="button">{{header.buttontext}}</a>
-            <!--End Call to Action-->
+            <ng-template #loginTmpl>
+                <div class="section-heading">
+                    <app-login></app-login>
+                </div>
+            </ng-template>
 
         </div>
 
     </div><!--End of Row-->
 </header>
+
+<app-intro></app-intro>
+<app-content></app-content>

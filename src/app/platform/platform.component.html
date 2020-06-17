@@ -1,0 +1,49 @@
+<div id="platform-component" *ngIf="auth.user$ | async as userAuth">
+    <div id="confirmation-div">
+      <mat-drawer-container class="example-container" autosize>
+        <!-- this will be hidden in mobile -->
+        <mat-drawer id="left-side-menu" #drawer [opened]="true" class="example-sidenav" mode="side">
+          <p>Menu</p>
+          <button class="nav-button" (click)="setActiveModule('video')" [ngClass]="{'goldText': activeModule === 'video'}" mat-button>
+              Your Videos
+              <img class="logo-icon" *ngIf="activeModule === 'video'" src="assets/images/logo-icon.png"/>
+          </button>
+          <button class="nav-button" (click)="setActiveModule('profile')" [ngClass]="{'goldText': activeModule === 'profile'}" mat-button>
+              Your Profile
+              <img class="logo-icon" *ngIf="activeModule === 'profile'" src="assets/images/logo-icon.png"/>
+          </button>
+          <mat-divider></mat-divider>
+          <app-profile-actions [parent]="'sidebar'"></app-profile-actions>
+
+          <div id="confirmation-div" *ngIf="(!userAuth.emailVerified)">
+            <app-email-confirmation [email]="userAuth.email"></app-email-confirmation>
+          </div>
+
+        </mat-drawer>
+        <!-- END this will be hidden in mobile -->
+
+      
+        <div class="example-sidenav-content">
+          <!-- this will be hidden in mobile -->
+          <button id="left-side-menu-btn" class="menu-icon-btn" type="button" mat-button (click)="drawer.toggle()">
+            <mat-icon *ngIf="!(drawer.opened)">menu</mat-icon>
+            <mat-icon *ngIf="drawer.opened">menu_open</mat-icon>
+          </button>
+          <!-- END this will be hidden in mobile -->
+          <div id="short-user-menu">
+              <button class="nav-button" (click)="setActiveModule('video')" [ngClass]="{'goldText': activeModule === 'video'}" mat-button>
+                  Your Videos
+                  <img class="logo-icon" *ngIf="activeModule === 'video'" src="assets/images/logo-icon.png"/>
+              </button>
+              <button class="nav-button" (click)="setActiveModule('profile')" [ngClass]="{'goldText': activeModule === 'profile'}" mat-button>
+                  Your Profile
+                  <img class="logo-icon" *ngIf="activeModule === 'profile'" src="assets/images/logo-icon.png"/>
+              </button>
+          </div>
+          <app-profile *ngIf="activeModule === 'profile'"></app-profile>
+          <app-my-videos-list *ngIf="activeModule === 'video'"></app-my-videos-list>
+        </div>
+      
+      </mat-drawer-container>
+    </div>
+</div>

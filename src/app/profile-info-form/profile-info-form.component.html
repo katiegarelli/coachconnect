@@ -1,0 +1,49 @@
+<form class="example-container" #ProfileInfoForm="ngForm">
+  <h1>{{data.title}}</h1>
+  <div mat-dialog-content *ngIf="auth.userDoc$ | async as user">
+    <span *ngFor="let prop of user | userDisplayFormFields" ngSwitch="{{prop.key}}">      
+      <mat-form-field *ngSwitchCase="'phoneNumber'">
+          <input matInput required [(ngModel)]="prop.value" name="{{prop.key}}" maxlength="10" placeholder="{{prop.key | label}}">
+      </mat-form-field>
+      <mat-form-field *ngSwitchCase="'dob'">
+          <input id="date-input-field" (click)="picker.open()" name="{{prop.key}}" required matInput [matDatepicker]="picker" placeholder="{{prop.key | label}}" [(ngModel)]="prop.value" readonly>
+          <mat-datepicker-toggle matSuffix [for]="picker">
+              <mat-icon matDatepickerToggleIcon>date_range</mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker [startAt]="prop.value" #picker></mat-datepicker>
+      </mat-form-field>
+      <span *ngSwitchCase="'yearsExperience'">
+          <h6 id="slider-title">{{prop.key | label}}</h6>
+          <mat-slider matInput
+              class="example-margin"
+              [max]="100"
+              [min]="0"
+              [step]="1"
+              [thumbLabel]="true"
+              [tickInterval]="1"
+               [(ngModel)]="prop.value"
+               name="{{prop.key}}">
+          </mat-slider>
+      </span>
+      <mat-form-field *ngSwitchCase="'State'">
+        <input type="text" matInput  [(ngModel)]="prop.value" name="{{prop.key}}" placeholder="{{prop.key | label}}" [matAutocomplete]="autoGroup">
+          <mat-autocomplete #autoGroup="matAutocomplete">
+            <mat-optgroup *ngFor="let group of stateGroupOptions | async" [label]="group.letter">
+              <mat-option *ngFor="let name of group.names" [value]="name">
+                {{name}}
+              </mat-option>
+          </mat-optgroup>
+        </mat-autocomplete>
+      </mat-form-field>
+      <mat-form-field *ngSwitchDefault>
+          <input matInput  [(ngModel)]="prop.value"  name="{{prop.key}}" maxlength="100" placeholder="{{prop.key | label}}">
+      </mat-form-field>
+    </span>
+    <button pull-right (click)="cancel(ProfileInfoForm)" matTooltip="Cancel" mat-button>
+      <mat-icon mat-list-icon>cancel_presentation</mat-icon>   
+    </button>
+    <button pull-right (click)="onSubmit(ProfileInfoForm)" [disabled]="!ProfileInfoForm.form.valid" matTooltip="save" mat-button>
+      <mat-icon mat-list-icon>save</mat-icon>   
+    </button>
+  </div>
+</form>

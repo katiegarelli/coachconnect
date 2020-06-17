@@ -1,0 +1,35 @@
+<form class="example-container row clearfix" (ngSubmit)="onSubmit(UpdateEmailForm)" #UpdateEmailForm="ngForm">
+    <h2 class="center" >Update your email</h2>
+    <h6 class="center">Are you sure you want to update your email? This will now be what you use to login to your account as well as where you will receive important updates from CCS.</h6>
+    <mat-form-field>
+        <input matInput class="form-control" [(ngModel)]="email" name="email" #emailValue="ngModel" maxlength="64" placeholder="New Email" required email/>
+        <mat-icon matSuffix>email</mat-icon>
+        <mat-error *ngIf="emailValue.invalid && (emailValue.dirty || emailValue.touched) && emailValue.errors.required">
+            Email is Required
+        </mat-error>
+        <mat-error *ngIf="emailValue.invalid && (emailValue.dirty || emailValue.touched) && emailValue.errors.email">
+            Please enter a valid Email
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input name="password" [type]="togglePass.type" maxlength="20" minlength="8" [(ngModel)]="password" matInput type="password" placeholder="Re-enter your Password" #passwordValue="ngModel" required/>
+        <mat-pass-toggle-visibility #togglePass matSuffix></mat-pass-toggle-visibility>
+        <mat-icon matSuffix>lock</mat-icon>
+        <mat-error *ngIf="passwordValue.invalid && (passwordValue.dirty || passwordValue.touched) && passwordValue.errors.required">
+            A password is required to update your email
+        </mat-error>
+        <mat-error *ngIf="passwordValue.invalid && (passwordValue.dirty || passwordValue.touched) && passwordValue.errors.maxlength">
+            Password cannot be more than 20 characters
+        </mat-error>
+        <mat-error *ngIf="passwordValue.invalid && (passwordValue.dirty || passwordValue.touched) && passwordValue.errors.minlength">
+            Password must be at least 8 characters
+        </mat-error>
+    </mat-form-field>
+    <button pull-right mat-dialog-close matTooltip="Cancel" mat-button>
+        <mat-icon mat-list-icon>cancel_presentation</mat-icon>   
+    </button>
+    <button pull-right type="submit" [disabled]="!UpdateEmailForm.form.valid" matTooltip="save" mat-button>
+        <mat-icon mat-list-icon>save</mat-icon>   
+    </button>
+</form>

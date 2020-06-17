@@ -1,0 +1,94 @@
+#profile-img {
+  display: block;
+  margin: auto;
+  height: 250px;
+  width: 250px;
+  max-width: 250px;
+}
+
+#viewUploadedImage {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  z-index: 2;
+  border-radius: 1em;
+}
+
+.hide-overflow {
+  overflow: hidden;
+}
+
+.profile-picture label {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  z-index: 3;
+}
+
+.infotext {
+  background-color: #DCDCDC;
+}
+
+#sampleImage{
+  float: left;
+}
+
+.profile-picture .drag-over .infotext {
+  color: white;
+  border: dashed 5px white;
+}
+
+.profile-picture .infotext {
+  height: 100%;
+  width: 100%;
+  vertical-align: middle;
+  text-align: center;
+  color: rgba(255,255,255,0.8);
+  border: dashed 3px rgba(255,255,255,0.8);
+  border-radius: 10px;
+  padding-top: 110px;
+  font-size: 150%;
+}
+
+mat-icon {
+  color: #d2b356;
+}
+
+.show {
+  display: auto;
+}
+
+.hide {
+  display: none;
+}
+
+.circular--square {
+  border-radius: 50%;
+}
+
+.dropzone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-weight: 200;
+  height: 300px;
+  width: 300px;
+  border: 2px dashed #d2b356;
+  border-radius: 5px;
+  background: white;
+  margin: 10px 0;
+
+  &.hovering {
+      border: 2px solid #d2b356;
+      color: #dadada !important;
+  }
+
+  .file-label {
+      font-size: 1.2em;
+  }
+}
+
+.file-input {
+  width: 90%;
+}

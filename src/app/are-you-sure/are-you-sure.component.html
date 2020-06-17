@@ -1,0 +1,14 @@
+<div mat-dialog-content>
+  {{data.message}}
+</div>
+<mat-dialog-actions align="end">
+    <button *ngIf="data.cancelButton" pull-right mat-dialog-close matTooltip="Cancel" mat-button>
+            {{data.cancelButton}}   
+    </button>
+    <button *ngIf="!data.cancelButton" pull-right mat-dialog-close matTooltip="Cancel" mat-button>
+            Cancel   
+    </button>
+    <button pull-right mat-dialog-close (click)="submit()" mat-button>
+        {{data.submitButton}}
+    </button>
+</mat-dialog-actions>

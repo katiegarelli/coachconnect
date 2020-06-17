@@ -1,0 +1,19 @@
+    <div class="player--container">
+      <div class="player-controls">
+        <button mat-button [ngClass]="{'hidden': musicPlaying}" (click)="play()">
+            <mat-icon>play_arrow</mat-icon>
+        </button>
+        <button mat-button [ngClass]="{'hidden': !musicPlaying}" (click)="pause()">
+            <mat-icon>pause</mat-icon>
+        </button>
+        <mat-progress-bar mode="determinate" value="{{$progress | async}}"></mat-progress-bar>
+
+        <!-- <span *ngIf="musicPlaying">
+          <mat-icon [ngClass]="{'Blink1': musicPlaying}">fiber_manual_record</mat-icon>
+          <mat-icon [ngClass]="{'Blink2': musicPlaying}">fiber_manual_record</mat-icon>
+          <mat-icon [ngClass]="{'Blink3': musicPlaying}">fiber_manual_record</mat-icon>
+          <mat-icon [ngClass]="{'Blink4': musicPlaying}">fiber_manual_record</mat-icon>
+        </span> -->
+
+      </div>
+    </div>  

@@ -1,0 +1,38 @@
+<div *ngIf="coach$ | async as coach">
+  <h1 mat-dialog-title>{{coach.displayName}} {{coach.lastName}}</h1>
+  <div mat-dialog-content>
+    <img id="coach-dialog-img" [src]="imgSrc"/>
+    <mat-divider></mat-divider>
+    <mat-tab-group>
+        <mat-tab label="Achievements">
+          <ng-template matTabContent>
+              <mat-list dense>
+                <mat-list-item *ngFor="let achievement of coach.achievements">
+                  <div>{{achievement}}</div>
+                </mat-list-item>
+              </mat-list>
+          </ng-template>
+        </mat-tab>
+        <mat-tab label="Background"> 
+          <ng-template matTabContent>
+            {{coach.background}}
+          </ng-template>
+        </mat-tab>
+        <mat-tab label="Price">
+          <ng-template matTabContent>
+            <mat-list dense>
+              <mat-list-item class="center">
+                <h4 mat-line>This coach's price is currently set to:</h4>
+                <h1 mat-line id="credits">{{coach.reviewPrice}}</h1> 
+                <h4 mat-line>credits per video review. </h4>
+                <h4 mat-line>**prices subject to change**</h4>
+              </mat-list-item>
+            </mat-list>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+  </div>
+</div>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

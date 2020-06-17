@@ -4,11 +4,13 @@ import { ConfigService } from '../config.service';
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
-  styleUrls: ['./content.component.sass']
+  styleUrls: ['./content.component.scss']
 })
 export class ContentComponent implements OnInit {
 
-  services = {};
+  services;
+  inLoading: boolean = true;
+  promoVideo:string = "388881713";
 
   constructor(private config: ConfigService) {}
 

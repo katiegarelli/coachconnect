@@ -30,12 +30,43 @@
 /* 1. Defaults & Reset of specific styles across browsers */
 /*------------------------------------------------------------------------------------------*/
 
+@import "~animate.css/animate.css";
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
 *, *:before, *:after {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
+/* Structure */
+
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #d2b356; 
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    margin: auto;
+    margin-top: 100px;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+.hidden {
+    display:none !important;
+}
+
+.cdk-global-scrollblock{
+    position: static !important;
+    width: initial !important;
+    overflow-y: inherit !important;
+  }
+  
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, blockquote, th, td {
     margin: 0;
     padding: 0;
@@ -189,7 +220,7 @@ section {
 .row {
     max-width: 1245px;
     margin: 0 auto;
-    padding: 75px 0;
+    // padding: 20px 0;
     position: relative;
 }
 
@@ -331,7 +362,6 @@ section {
 
 #logo {
     float: left;
-    height: 71px;
     line-height: 66px;
     margin-right: 15px;
 }
@@ -561,6 +591,10 @@ section {
 #nav-trigger {
     display: none;
     text-align: right;
+}
+
+#short-user-menu{
+    display: none;
 }
 
 #nav-trigger span {
@@ -823,8 +857,17 @@ h6 {
 }
 
 #banner-content.row {
-    padding-top: 170px;
-    padding-bottom: 100px;
+    padding-top: 70px;
+}
+
+#clients {
+    padding-top: 120px;
+}
+#testimonials {
+    padding-top: 150px;
+}
+#pricing {
+    padding-top: 150px;
 }
 
 #banner h1 {
@@ -1438,6 +1481,7 @@ blockquote {
 }
 
 .client-overlay {
+    border-radius: 50%;
     background: rgba(0, 0, 0, 0.8);
     position: absolute;
     top: 0;
@@ -2122,6 +2166,27 @@ blockquote {
 /* =Media Queries for Nav
 ===============================*/
 @media all and (max-width: 1024px) {
+
+    app-account-header {
+        display: none;
+    }
+
+    #header-social{
+        display: none;
+    }
+
+    #left-side-menu{
+        display: none;
+    }
+
+    #left-side-menu-btn{
+        display: none;
+    }
+
+    #short-user-menu{
+        display: block;
+    }
+
     #nav-trigger {
         display: block;
     }
@@ -2377,3 +2442,6 @@ blockquote {
 
 
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

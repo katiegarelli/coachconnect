@@ -5,53 +5,66 @@
             <!--Logo-->
             <div id="logo">
 
-                <!--Logo that is shown on the banner-->
-                <img src="assets/images/logo.png" id="banner-logo" alt="Landing Page"/>
-                <!--End of Banner Logo-->
-
                 <!--The Logo that is shown on the sticky Navigation Bar-->
-                <img src="assets/images/logo-2.png" id="navigation-logo" alt="Landing Page"/>
+                <mat-spinner [ngClass]="{'hidden': !isLoading}"></mat-spinner>                              
+                <img src="assets/images/logo-2-min.png" (click)="navigateTo('/home')" id="navigation-logo" alt="Landing Page"  [ngClass]="{'hidden': isLoading}" (load)="this.isLoading = false;"/>
                 <!--End of Navigation Logo-->
-
             </div>
             <!--End of Logo-->
-            <aside>
-                <app-social></app-social>
 
-                <app-cart></app-cart>
+            <aside>
+                <app-account-header></app-account-header>
+                <app-social id="header-social"></app-social>
             </aside>
 
             <!--Main Navigation-->
             <nav id="nav-main">
                 <ul>
                     <li>
-                        <a href="#banner" (click)="getActiveTab('home')" [class.active]="activetab === 'home'">Home</a>
+                        <a routerLink="/home" routerLinkActive="active">Home</a>
                     </li>
                     <li>
-                        <a href="#about" (click)="getActiveTab('about')" [class.active]="activetab === 'about'">About</a>
+                        <a routerLink="/coaches" routerLinkActive="active">Coaches</a>
                     </li>
                     <li>
-                        <a href="#gallery" (click)="getActiveTab('gallery')" [class.active]="activetab === 'gallery'">Gallery</a>
+                        <a routerLink="/testimonials" routerLinkActive="active">Testimonials</a>
                     </li>
                     <li>
-                        <a href="#services" (click)="getActiveTab('services')" [class.active]="activetab === 'services'">Services</a>
-                    </li>
-                    <li>
-                        <a href="#testimonials" (click)="getActiveTab('testimonials')" [class.active]="activetab === 'testimonials'">Testimonials</a>
-                    </li>
-                    <li>
-                        <a href="#clients" (click)="getActiveTab('clients')" [class.active]="activetab === 'clients'">Clients</a>
-                    </li>
-                    <li>
-                        <a href="#pricing" (click)="getActiveTab('pricing')" [class.active]="activetab === 'pricing'">Pricing</a>
+                        <a routerLink="/howItWorks" routerLinkActive="active">How it Works</a>
                     </li>
                 </ul>
+
             </nav>
             <!--End of Main Navigation-->
 
-            <div id="nav-trigger"><span></span></div>
-            <nav id="nav-mobile"></nav>
+            <button id="nav-trigger" mat-button [matMenuTriggerFor]="nav">
+            </button>
+            <mat-menu #nav="matMenu">
+                    <button (click)="navigateTo('/home')" mat-menu-item>Home</button>
+                    <button (click)="navigateTo('/coaches')" mat-menu-item>Coaches</button>
+                    <button (click)="navigateTo('/testimonials')" mat-menu-item>Testimonials</button>
+                    <button (click)="navigateTo('/howItWorks')" mat-menu-item>How it Works</button>
+                    <button (click)="navigateTo('/platform')" mat-menu-item>View Your Account</button>
 
+                <!-- <ul>
+                    <li mat-menu-item>
+                        <a routerLink="/home" routerLinkActive="active">Home</a>
+                    </li>
+                    <li mat-menu-item>
+                        <a routerLink="/coaches" routerLinkActive="active">Coaches</a>
+                    </li>
+                    <li mat-menu-item>
+                        <a routerLink="/testimonials" routerLinkActive="active">Testimonials</a>
+                    </li>
+                    <li mat-menu-item>
+                        <a routerLink="/howItWorks" routerLinkActive="active">How it Works</a>
+                    </li>
+                    <li mat-menu-item>
+                        <a routerLink="/platform" routerLinkActive="active">View Your Account</a>
+                    </li>
+
+                </ul> -->
+            </mat-menu>
         </div>
     </div>
 </div><!--End of Header-->

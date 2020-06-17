@@ -1,0 +1,36 @@
+::ng-deep {
+  // .mat-button {
+  //   width: 100%;
+  // }
+
+  .mat-icon {
+    vertical-align: middle !important;
+  }
+
+  .separator {
+    z-index: 10;
+  }
+
+  .actions > .sign-out-button:before {
+    content: "Sign Out";
+  }
+
+  .actions > .go-back-button:before {
+    content: "Go Back";
+  }
+}
+
+.empty-div-300{
+  height: 300px;
+}
+
+#login {
+  display: flex;
+  width: 80%;
+}
+
+.forgot-password {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 16px
+}

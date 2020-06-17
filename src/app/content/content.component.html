@@ -1,5 +1,5 @@
 <!--Content Section-->
-<div id="services" class="scrollto clearfix">
+<div id="services" class="clearfix">
 
     <div class="row no-padding-bottom clearfix">
 
@@ -9,7 +9,7 @@
             <!--User Testimonial-->
             <blockquote class="testimonial text-right bigtest">
                 <q>{{services.testimonial}}</q>
-                <footer>— {{services.person}}, {{services.persondescription}}</footer>
+                <footer>— {{services.person}} {{services.persondescription}}</footer>
             </blockquote>
             <!-- End of Testimonial-->
 
@@ -23,21 +23,23 @@
                 <h2 class="section-title">{{services.title}}</h2>
                 <p class="section-subtitle">{{services.description}}</p>
             </div>
-            <p>
+            <!-- <p>
                 {{services.textblock1}}
             </p>
             <p>
                 {{services.textblock2}}
-            </p>
+            </p> -->
             <!-- Just replace the Video ID "UYJ5IjBRlW8" with the ID of your video on YouTube (Found within the URL) -->
-            <a href="#" data-videoid="UYJ5IjBRlW8" data-videosite="youtube" class="button video link-lightbox">
-                WATCH VIDEO <i class="fa fa-play" aria-hidden="true"></i>
-            </a>
+            <!-- <a href="#" data-videoid="UYJ5IjBRlW8" data-videosite="youtube" class="button video link-lightbox">
+                WATCH VIDEO 
+                <i class="fa fa-play" aria-hidden="true"></i>
+            </a> -->
+            <app-vimeo-player #player [videoId]="promoVideo" [height]="'220px'"></app-vimeo-player>
         </div>
         <!--End Content Right Side-->
 
         <div class="col-3">
-            <img src="assets/images/dancer.jpg" alt="Dancer"/>
+            <img id="splatter" src="assets/images/dancer.png" alt="Dancer"/>
         </div>
 
     </div>

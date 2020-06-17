@@ -1,0 +1,97 @@
+mat-icon {
+    color: #d2b356;
+}
+
+.example-container > * {
+    width: 100%;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+mat-slider {
+  width: 100%;
+}
+
+  
+.example-margin {
+    margin: 10px;
+}
+
+#slider-title {
+    color: gray;
+}
+
+
+.md-icon-button + .md-datepicker-input-container {
+    float: left;
+    margin-top:7px;
+  }
+
+#date-input-field {
+    width: 93%;
+}
+
+::ng-deep {
+
+    .mat-slider-thumb-label {
+      transform: rotate(45deg) !important;
+      border-radius: 50% 50% 0 !important;
+    }
+    
+    .mat-slider-thumb {
+      transform: scale(0) !important;
+    }
+    
+    .mat-slider-thumb-label-text {
+      opacity: 1 !important;
+    }
+  
+  }
+
+  #divider {
+    margin-top: 20px;
+    margin-bottom: 30px;
+
+  }
+
+  #registration-logo {
+    width: 100%;
+    margin: auto;
+  }
+
+  .center{
+    text-align: center;
+  }
+
+  .rcorners2 {
+    border-radius: 10px;
+    border: 2px solid #d2b356;
+    background-color: white;
+    width: 100%;
+  }
+
+  #create-account-div{
+    width: 100%
+  }
+
+  #checkbox{
+    margin-bottom: 20px;
+  }
+
+  #terms-link{
+    text-decoration: underline;
+  }
+
+#width-sm{
+  width: 20%;
+}
+
+#width-md {
+  width: 30%;
+}
+
+.width-80 {
+  width: 90%;
+}

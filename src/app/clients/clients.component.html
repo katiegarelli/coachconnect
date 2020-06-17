@@ -1,5 +1,5 @@
 <!--Clients-->
-<section id="clients" class="scrollto clearfix">
+<section id="clients" class="clearfix">
     <div class="row clearfix">
 
         <div class="col-3">
@@ -8,19 +8,36 @@
                 <h3>{{clients.tagline}}</h3>
                 <h2 class="section-title">{{clients.title}}</h2>
                 <p class="section-subtitle">{{clients.description}}</p>
+                <p class="section-subtitle">Click on a Coach for additional information</p>
             </div>
 
         </div>
 
-        <div class="col-2-3">
-
-            <a href="{company.link}}" class="col-3" *ngFor="let company of clients.companies">
-                <img src="assets/images/company-images/{{company.logo}}" alt="{company.name}}"/>
-                <div class="client-overlay"><span>{{company.name}}</span></div>
+        <div class="col-2-3 wow fadeInLeft"  data-wow-delay="0.2s">
+            <a class="col-3" *ngFor="let coach of auth.coachesMap$ | async | getCoachList">
+                <span *ngIf="coach | getCoachUrl |async as coachImg">
+                    <span *ngIf="coach | coachDropdownStatus as status">
+                        <mat-spinner [ngClass]="{'hidden': !isLoading}"></mat-spinner>
+                        <img [src]="coachImg" class="circular--square ng-star-inserted" [ngClass]="{'hidden': isLoading}" (load)="this.isLoading = false;"/>
+                        <span *ngIf="(status === 'active')">
+                            <div *ngIf="coach | coachDropdownId as id" (click)="open(id, coachImg)" class="client-overlay">
+                                <span>{{coach | coachDropdownName}}</span>
+                                <span id="cost">{{coach | coachDropdownPrice}} credits</span>
+                            </div>
+                        </span>
+                        <span *ngIf="(status === 'inactive')">
+                            <div *ngIf="coach | coachDropdownId as id" class="client-overlay">
+                                <span>{{coach | coachDropdownName}}</span>
+                                <span id="cost">Temporarily Unavailable</span>
+                            </div>
+                        </span>
+                    </span>
+                </span>
             </a>
 
         </div>
 
     </div>
 </section>
+
 <!--End of Clients-->

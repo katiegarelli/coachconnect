@@ -1,0 +1,56 @@
+<div id="prof-actions" class="row clearfix" *ngIf="auth.userDoc$ | async as user">
+  <h4 *ngIf="parent === 'profile'">User Account Info</h4>
+  <div class="left">
+    <div *ngIf="user.role === 'athlete'" id="purchased_reviews_div">
+      <b>Your Available Credits:</b> {{ user.credits }}
+    </div>
+    <div *ngIf="user.role === 'coach'" id="purchased_reviews_div">
+      <b>Your Review Price:</b> {{ user.reviewPrice }}
+    </div>
+    <div *ngIf="user.role === 'coach'" id="total_reviews_div">
+      <b>Total Reviews Completed:</b> {{ user.completedReviewsCount }}
+    </div>
+    <div *ngIf="user.role === 'coach'" id="total_reviews_div">
+      <b>Total Credits Earned:</b> {{ user.totalCreditsEarned }}
+    </div>
+  </div>
+
+  <span *ngIf="parent === 'profile'">
+    <h4 >Account Preferences</h4>
+    <div class="left" *ngIf="user.role === 'coach'" id="total_reviews_div"> 
+      <mat-slide-toggle [checked]="user.status && user.status === 'active'" (change)="toggleFlip($event, (user.status && user.status === 'active'))"><b>Status: </b> {{ user.status }}</mat-slide-toggle>
+    </div>
+    <div class="left"> 
+      <b matTooltip="This will allow us to keep you up to date with important information about the status of your reviews as well as other exciting CCS info">How would you like to be notified?</b>
+      <mat-checkbox (change)="toggleEmailCheck($event, user.notifications)" [checked]="user.notifications === 'email' || user.notifications === 'both'">Email</mat-checkbox>
+      <mat-checkbox (change)="toggleTextCheck($event, user.notifications)" [checked]="user.notifications === 'text' || user.notifications === 'both'">Text</mat-checkbox>
+    </div>
+    <button class="action_button left" (click)="updateEmail()" mat-raised-button>Update Email
+      <mat-icon mat-list-icon>email</mat-icon>    
+    </button>
+    <button class="action_button left" (click)="auth.signOut()" mat-raised-button>Logout
+      <mat-icon mat-list-icon>account_box</mat-icon>    
+    </button>
+  </span>
+
+  <h4 *ngIf="user.role === 'athlete' && parent === 'profile'">Actions</h4>
+  <span *ngIf="user.role === 'athlete'" (click)="clickedDisabledUpload( user.credits )">
+    <button class="action_button left" [disabled]="canUpload( user.credits )" (click)="uploadVideo()" mat-raised-button>Upload Video For Review
+        <mat-icon mat-list-icon>video_call</mat-icon>    
+    </button>
+  </span>
+  <button *ngIf="user.role === 'athlete'" class="action_button left" (click)="purchaseCredits()" mat-raised-button>Purchase Credits
+    <mat-icon mat-list-icon>add_shopping_cart</mat-icon>    
+  </button>
+
+  <h4 *ngIf="user.role === 'coach' && parent === 'profile'">Coach Info for Coaches Tab</h4>
+  <button *ngIf="user.role === 'coach'" class="action_button left" (click)="updatePrice()" mat-raised-button>Update your Price
+    <mat-icon mat-list-icon>monetization_on</mat-icon>    
+  </button>
+  <button *ngIf="user.role === 'coach'" class="action_button left" (click)="updateAcievements()" mat-raised-button>Update your Achievements
+    <mat-icon mat-list-icon>grade</mat-icon>    
+  </button>
+  <button *ngIf="user.role === 'coach'" class="action_button left" (click)="updateBackground()" mat-raised-button>Update your Background
+    <mat-icon mat-list-icon>notes</mat-icon>    
+  </button>
+</div>

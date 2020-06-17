@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Update Your Background</h1>
+<h4>This background info will be displayed in the coaches tab of the website for all users to see.</h4>
+<form class="example-container" *ngIf="auth.userDoc$ | async as user" #BackgroundForm="ngForm">
+  <div id="dialog-content" mat-dialog-content>    
+    <mat-form-field class="form-field">
+        <textarea #backgroundText matInput [(ngModel)]="user.background"  name="background" maxlength="250"></textarea>
+        <mat-hint>{{backgroundText.value.length}} / 250</mat-hint>
+    </mat-form-field>
+  </div>
+  <mat-dialog-actions align="end">
+    <button pull-right (click)="cancel(BackgroundForm)" matTooltip="Cancel" mat-button>
+      <mat-icon mat-list-icon>cancel_presentation</mat-icon>   
+    </button>
+    <button pull-right (click)="onSubmit(BackgroundForm)" mat-dialog-close [disabled]="!(BackgroundForm.form.valid)" matTooltip="save" mat-button>
+      <mat-icon mat-list-icon>save</mat-icon>   
+    </button>
+  </mat-dialog-actions>
+</form>

@@ -1,0 +1,16 @@
+// ::ng-deep {
+//   iframe {
+//     width: 100%;
+//   }
+// }
+
+.video-surround {
+  padding: 2%;
+  border-radius: 25px;
+  border: 2px solid #d2b356;
+  width: 100%;
+  overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+}

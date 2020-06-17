@@ -1,0 +1,78 @@
+<div>
+    <!-- <div class="row">
+        <div class="col">
+            <button id="btn-record" type="button" class="btn btn-primary" (click)="_startRecording()">Record</button>
+            <span class="ml-3"></span>
+            <button id="btn-stop" type="button" class="btn btn-primary" (click)="_stopAllRecording()">Stop</button>
+            <div style="margin: .25rem">
+                <span id="debug-txt"></span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <h3>Recordings</h3>
+            <div id="recordings-cont">
+                <audio id="audio-recording" controls></audio>
+            </div>
+        </div>
+    </div> -->
+
+    <span  *ngIf="(state === 'stopped' && !blob) || state === 'recording'">Add an Audio Note: </span>
+    <ng-container *ngIf="state === 'forbidden'; else tmpl">
+        Please Enable Audio Recording Through your Browser Settings
+    </ng-container>
+
+    <ng-template #tmpl>
+        <span class="record-container">
+            <button id="record-button" *ngIf="state === 'stopped' && (!blob)"
+            matTooltip="click to start recording audio"
+            mat-button
+            (click)="_startRecording()">
+                <mat-icon id="record-icon">fiber_manual_record</mat-icon>
+            </button>
+
+            <button id="stop-record-button" *ngIf="state === 'recording'" 
+            [ngClass]="{'Blink': state === 'recording'}"
+            matTooltip="click to stop recording"
+            mat-button
+            (click)="_stopAllRecording()">
+                <mat-icon id="record-icon">stop</mat-icon>
+            </button>
+
+            <!-- <span id="seconds" *ngIf="(state === 'recording') || (state === 'stopped')">{{seconds}} sec</span> -->
+
+        </span>
+    </ng-template>
+
+    <div class="row">
+        <div class="col">
+            <h4 *ngIf="(state === 'stopped' && (blob))">Save Recording at: {{data | minuteSeconds}} seconds?</h4>
+            <div id="recordings-cont">
+                <audio id="audio-recording" controls [ngClass]="{'hidden': !(state === 'stopped' && (blob))}"></audio>
+
+                <div>
+                    <button
+                    matTooltip="Save recording"
+                    mat-button
+                    *ngIf="(state === 'stopped' && (blob))"
+                    (click)="onSave()">
+                        <mat-icon>save</mat-icon>
+                    </button>
+        
+                    <button
+                    matTooltip="Cancel recording"
+                    mat-button
+                    *ngIf="(state === 'stopped' && (blob))"
+                    (click)="onCancel()">
+                        <mat-icon>cancel_presentation</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

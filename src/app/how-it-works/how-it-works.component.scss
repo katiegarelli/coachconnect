@@ -1,0 +1,123 @@
+#new-user{
+}
+
+.logo {
+    max-width: 250px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.p-large {
+	font: 400 1rem/1.5rem "Raleway", sans-serif;
+}
+
+/* Services */
+.cards-1 .card {
+    max-width: 21rem;
+}
+
+.cards-1 .col-lg-12 div.card:nth-child(3n+2) {
+    margin-right: 2.875rem;
+    margin-left: 2.875rem;
+}
+/* end of services */
+
+.cards-1 {
+	padding-bottom: 1.625rem;
+	text-align: center;
+}
+
+.cards-1 h2 {
+	margin-bottom: 1rem;
+}
+
+.cards-1 .card {
+	max-width: 21rem;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 3.25rem 2rem 2rem 2rem;
+	border: 1px solid #d2b356;
+	border-radius: 0.5rem;
+	background: transparent;
+}
+
+.cards-1 .card-image {
+	width: 6rem;
+	height: 6rem;
+	margin-right: auto;
+	margin-bottom: 2rem;
+	margin-left: auto;
+}
+
+.cards-1 .card-title {
+	margin-bottom: 0.875rem;
+}
+
+.cards-1 .card-body {
+	padding: 0;
+}
+
+
+.card {
+	display: inline-block;
+}
+
+.col-lg-12 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+.newLine {
+    display: block;
+}
+
+.no-float {
+    float: none;
+}
+
+#how-it-works{
+	padding-top: 120px;
+}
+
+img {
+	max-width: 100%;
+    height: auto;
+    width: auto;
+}
+
+#credits-img {
+	float: right;
+}
+
+.description-image {
+	height: 130px;
+}
+
+.desc {
+	display: inline-block;
+	text-align: center;
+	margin-top: 10%;
+}
+
+.rcorners2 {
+    border-radius: 10px;
+    border: 2px solid #d2b356;
+  }
+
+#divider {
+	padding-bottom: 100px;
+}
+
+.table-row {
+	display: table-row;
+}

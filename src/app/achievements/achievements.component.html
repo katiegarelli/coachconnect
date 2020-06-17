@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Update Your Achievements</h1>
+<h4>These will be displayed in the coaches tab of the website for all users to see.</h4>
+<form class="example-container" *ngIf="auth.userDoc$ | async as user">
+  <div id="dialog-content" mat-dialog-content>    
+    <mat-list dense role="list">
+        <mat-list-item *ngFor="let achievement of user.achievements" role="listitem">
+            <button mat-button (click)="updateAchievements(achievement, true, user.achievements)">
+                <mat-icon>delete_forever</mat-icon>
+            </button>
+            {{achievement}}
+        </mat-list-item>
+    </mat-list>
+
+    <mat-form-field>
+        <input matInput [(ngModel)]="addItemInputName" #itemValue name="addItemInputName" placeholder="New item...">
+    </mat-form-field>
+    <button mat-button (click)="updateAchievements(itemValue.value, false, user.achievements)">Click to add</button>
+  </div>
+  <mat-dialog-actions align="end">
+    <button pull-right (click)="cancel()" matTooltip="Cancel" mat-button>
+      <mat-icon mat-list-icon>cancel_presentation</mat-icon>   
+    </button>
+    <button pull-right (click)="save()" mat-dialog-close matTooltip="save" mat-button>
+      <mat-icon mat-list-icon>save</mat-icon>   
+    </button>
+  </mat-dialog-actions>
+</form>

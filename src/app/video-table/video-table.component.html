@@ -1,0 +1,135 @@
+<div  class="row clearfix video-list">
+
+    <div class="example-container mat-elevation-z8">
+        <div class="spinner-container" *ngIf="!dataSource">
+            <mat-spinner></mat-spinner>
+        </div>
+
+        <div class="example-loading-shade" *ngIf="!dataSource || dataSource.data.length <= 0">
+            <div *ngIf="tableStatus === 'P'" class="example-no-videos">
+                No videos are in progress at this time.
+            </div>
+            <div *ngIf="tableStatus === 'D'" class="example-no-videos">
+                No videos are delayed at this time.
+            </div>
+            <div *ngIf="tableStatus === 'F'" class="example-no-videos">
+                No videos are done being reviewed at this time.
+            </div>
+            <div *ngIf="tableStatus === 'U'" class="example-no-videos">
+                You have no uploaded videos that are waiting to be reviewed at this time.
+            </div>
+        </div>
+
+        <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="dateUploaded">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Video Upload Date </th>
+            <td mat-cell *matCellDef="let row"> 
+                <div *ngIf="row.dateUploaded">
+                    {{row.dateUploaded.toDate() | date:'MM/dd/yyyy'}}
+                </div>
+            </td>
+            </ng-container>
+
+            <ng-container matColumnDef="screenshot">
+            <th mat-header-cell *matHeaderCellDef> Video </th>
+            <td mat-cell *matCellDef="let row"> 
+                <span *ngIf="this.isTranscoded[row.contentLocation]">
+                    <mat-spinner [ngClass]="{'hidden': (isNotLoading[row.id])}"></mat-spinner> 
+                    <img src="{{row.contentLocation | vimeoThumbnail | async | thumbUrl}}" [ngClass]="{'hidden': !(isNotLoading[row.id])}" (load)="this.isNotLoading[row.id] = true;"/>
+                </span>
+                <span *ngIf="!this.isTranscoded[row.contentLocation]">
+                    <mat-spinner></mat-spinner> 
+                </span>
+            </td>
+            </ng-container>
+
+            <ng-container matColumnDef="opponent">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Opponent </th>
+            <td mat-cell *matCellDef="let row"> {{row.opponent}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="pin">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Pin? </th>
+                <td mat-cell *matCellDef="let row"> 
+                    <span *ngIf="row.pin">
+                        <mat-icon matTooltip="Pin" mat-list-icon>star_border</mat-icon>
+                    </span>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="weight">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Weight </th>
+                <td mat-cell *matCellDef="let row"> {{row.weight}} </td>
+            </ng-container>
+            <ng-container matColumnDef="matchDate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Match Date </th>
+                <td mat-cell *matCellDef="let row">
+                    <div *ngIf="row.matchDate">
+                        {{row.matchDate.toDate() | date:'MM/dd/yyyy'}}
+                    </div>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="home">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Home vs. Away </th>
+                <td mat-cell *matCellDef="let row">
+                    <div *ngIf="row.home" id="score-div">
+                        <mat-icon matTooltip="Home" mat-list-icon>home</mat-icon>
+                    </div>
+                    <div *ngIf="!row.home" id="score-div">
+                        <mat-icon matTooltip="Away" mat-list-icon>commute</mat-icon>
+                    </div>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="score">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Final Score </th>
+                <td mat-cell *matCellDef="let row">
+                    <div id="score-div">
+                        {{row.scoreW}} to {{row.scoreL}}
+                    </div> 
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="outcome">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Match Outcome </th>
+            <td mat-cell *matCellDef="let row">
+                <div *ngIf="row.outcome === 'W'">
+                    <mat-icon matTooltip="Win" mat-list-icon>thumb_up</mat-icon>
+                </div>
+                <div *ngIf="row.outcome === 'L'">
+                    <mat-icon matTooltip="Loss" mat-list-icon>thumb_down</mat-icon>
+                </div>
+                <div *ngIf="row.outcome === 'T'">
+                    <mat-icon matTooltip="Tie" mat-list-icon>thumbs_up_down</mat-icon>    
+                </div>
+            </ng-container>
+
+            <ng-container matColumnDef="comments">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Comments </th>
+            <td mat-cell *matCellDef="let row"> {{row.comments}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="reviewer">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Reviewer </th>
+            <td mat-cell *matCellDef="let row"> {{row.reviewer}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="dateReviewed">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Reviewed </th>
+            <td mat-cell *matCellDef="let row"> 
+                <div *ngIf="row.dateReviewed">
+                    {{row.dateReviewed.toDate() | date:'MM/dd/yyyy'}} 
+                </div>
+            </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row  [ngClass]="{'highlight': selectedRowContentLocation == row.contentLocation}" (click)="displayVideo(row)" *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
+    </div>
+</div>

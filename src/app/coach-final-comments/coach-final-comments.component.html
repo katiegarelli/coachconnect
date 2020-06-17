@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Are you Done? Once you submit - you will no longer be able to edit this review.</h1>
+<h6>If you're ready, Please add a few sentences on the athlete's overall performance: </h6>
+<form class="example-container" *ngIf="auth.userDoc$ | async as user" #finalCommentsForm="ngForm">
+  <div id="dialog-content" mat-dialog-content>    
+    <mat-form-field class="form-field">
+        <textarea matInput [(ngModel)]="finalComments" name="finalComments" maxlength="250"></textarea>
+    </mat-form-field>
+  </div>
+  <mat-dialog-actions align="end">
+    <button pull-right (click)="cancel(finalCommentsForm)" matTooltip="Cancel" mat-button>
+     Cancel   
+    </button>
+    <button pull-right (click)="onSubmit(finalCommentsForm)" mat-dialog-close [disabled]="!(finalCommentsForm.form.valid)" matTooltip="save" mat-button>
+      Complete this Review
+    </button>
+  </mat-dialog-actions>
+</form>

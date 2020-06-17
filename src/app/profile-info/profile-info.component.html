@@ -1,0 +1,16 @@
+<div class="col-2-3">
+  <h4>About You</h4>
+  <mat-list dense *ngIf="auth.userDoc$ | async as user">
+    <mat-list-item *ngFor="let entry of user | userDisplayFields">
+      <h4 mat-line>
+        <div ng-if="entry.key">
+          <b>{{entry.key | label}} : </b>{{entry.value}}
+        </div>
+      </h4>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list>
+  <button (click)="editProps()" pull-right matTooltip="edit" mat-button>
+      <mat-icon mat-list-icon>edit</mat-icon>    
+  </button>
+</div>

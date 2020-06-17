@@ -1,0 +1,115 @@
+<div class="row clearfix">
+  <app-video-viewer #videoViewer [data]="dataNotes" (onData)="updateDataViewer($event)" [selectedVideo$]="selectedVideo$"></app-video-viewer>
+
+  <span *ngIf="auth.userDoc$ | async as user">
+      <span *ngIf="user.newUser; else videoViewerTmpl">
+        <div class="row clearfix">
+          <app-new-user></app-new-user>
+        </div>
+      </span>    
+  </span>
+</div>
+
+<ng-template #videoViewerTmpl>
+  <span *ngIf="auth.userDoc$ | async as user">
+    <span *ngIf="selectedVideo$ | async as currentVideo; else noVideoTmpl">
+      <span class="col-2" *ngIf="currentVideo.reviewStatus === 'U'">
+
+          <span *ngIf="user.role === 'athlete'">
+            <div>
+                <div class="example-no-videos">
+                  Your video is still waiting to be reviewed.
+                </div>
+            </div>
+          </span>
+
+          <span *ngIf="user.role === 'coach'">
+            <mat-progress-bar mode="determinate" value="0"></mat-progress-bar>
+            <button class="update-status" (click)="updateStatus(currentVideo.id, 'P', currentVideo.creditsCharged)" mat-button>
+                <mat-icon>loop</mat-icon>
+                Start Reviewing!
+            </button>
+          </span>
+
+      </span>
+
+      <span class="col-2" *ngIf="currentVideo.reviewStatus  === 'P'">
+
+          <span *ngIf="user.role === 'athlete'">
+            <div>
+                <div class="example-no-videos">
+                  Your video is the process of being reviewed.
+                </div>
+            </div>
+          </span>
+
+          <span *ngIf="user.role === 'coach'">
+            <mat-progress-bar mode="determinate" value="50"></mat-progress-bar>
+            <button class="update-status" (click)="updateStatus(currentVideo.id, 'F', currentVideo.creditsCharged)" mat-button>
+                <mat-icon>done</mat-icon>
+                Mark Review as Completed!
+            </button>
+            <app-video-notes [data]="dataViewer" (onData)="updateDataNotes($event)" *ngIf="currentVideo.contentLocation" [selectedRow]="selectedRow"></app-video-notes>
+          </span>
+
+      </span>
+
+      <span class="col-2" *ngIf="currentVideo.reviewStatus  === 'F'">
+
+          <span *ngIf="user.role === 'athlete'">
+            <app-video-notes [data]="dataViewer" (onData)="updateDataNotes($event)" *ngIf="currentVideo.contentLocation" [selectedRow]="selectedRow"></app-video-notes>
+          
+            <mat-accordion>
+              <mat-expansion-panel id="writtenComments">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Coach Comments
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p>{{currentVideo.finalComments}}</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+
+          </span>
+
+          <span *ngIf="user.role === 'coach'">
+              <div>
+                  <div class="example-no-videos">
+                    Thank you! This video review has been completed.
+                  </div>
+              </div>
+          </span>
+
+      </span>
+    </span>
+  </span>
+</ng-template>
+
+<ng-template #noVideoTmpl>
+  <img id="no-video-img" src="assets/images/logo-icon.png"/>
+</ng-template>
+
+<span *ngIf="auth.userDoc$ | async as user">
+      <mat-tab-group>
+          <mat-tab label="Waiting on Review">
+            <ng-template matTabContent>
+              <app-video-table [selectedRowContentLocation]="selectedRowContentLocation" (onRowChange)="updateRow($event)" [tableStatus]="'U'" ></app-video-table>
+            </ng-template>
+          </mat-tab>
+          <mat-tab label="In Progress">
+            <ng-template matTabContent>
+              <app-video-table [selectedRowContentLocation]="selectedRowContentLocation" (onRowChange)="updateRow($event)" [tableStatus]="'P'" ></app-video-table>
+            </ng-template>
+          </mat-tab>
+          <mat-tab *ngIf="(user.role === 'athlete')" label="Review Completed">
+            <ng-template matTabContent>
+              <app-video-table [selectedRowContentLocation]="selectedRowContentLocation" (onRowChange)="updateRow($event)" [tableStatus]="'F'" ></app-video-table>
+            </ng-template>
+          </mat-tab>
+          <!-- <mat-tab *ngIf="showDelayedTab" label="Delayed">
+            <ng-template matTabContent>
+              <app-video-table [selectedRowContentLocation]="selectedRowContentLocation" (onRowChange)="updateRow($event)" [tableStatus]="'D'" ></app-video-table>
+            </ng-template>
+          </mat-tab> -->
+      </mat-tab-group>
+</span>

@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Update Your Price</h1>
+<h4>This is the number of credits a user will be charged to have a video reviewed by you. Please note that you are free to change your cost at any time but users will be charged based on your price at time of video upload - not at time of review. Also note that CCS fees will be taken out of the price set here.</h4>
+<form class="example-container" *ngIf="auth.userDoc$ | async as user" (ngSubmit)="onSubmit(CostForm)" #CostForm="ngForm">
+  <div id="dialog-content" mat-dialog-content>
+    
+    <h6 id="slider-title">Cost of Review</h6>
+    <mat-slider matInput
+        class="example-margin"
+        [max]="500"
+        [min]="1"
+        [step]="1"
+        [thumbLabel]="true"
+        [tickInterval]="1"
+            [(ngModel)]="user.reviewPrice"
+            name="credits">
+    </mat-slider>
+
+
+  </div>
+  <mat-dialog-actions align="end">
+    <button pull-right mat-dialog-close matTooltip="Cancel" mat-button>
+      <mat-icon mat-list-icon>cancel_presentation</mat-icon>   
+    </button>
+    <button pull-right type="submit" mat-dialog-close [disabled]="!(CostForm.form.valid)" matTooltip="save" mat-button>
+      <mat-icon mat-list-icon>save</mat-icon>   
+    </button>
+  </mat-dialog-actions>
+</form>

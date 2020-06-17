@@ -1,0 +1,14 @@
+<span *ngIf="auth.userDoc$ | async as user; else getConnected" >
+    <button id="img-dropdown" mat-button [matMenuTriggerFor]="menu">
+        <img id="user-img" *ngIf="user | getProfilePictureUrl | async as imageUrl" class="circular--square"  src="{{imageUrl}}" />
+        <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button (click)="launchPlatform()" mat-menu-item>View Your Account</button>
+        <button (click)="auth.signOut()" mat-menu-item>logout</button>
+    </mat-menu>
+</span>
+
+<ng-template #getConnected>
+    <button class="rcorners2" mat-button (click)="launchPlatform()">Get Connected</button>      
+</ng-template>

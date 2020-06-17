@@ -1,0 +1,2 @@
+<mat-spinner [ngClass]="{'hidden': !isLoading}"></mat-spinner>
+<iframe [src]="url" width="100%" height="{{height}}" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" [ngClass]="{'hidden': isLoading}" (load)="this.isLoading = false;"></iframe>
