@@ -5,14 +5,14 @@ Please follow this link to a promotional video:
 https://vimeo.com/388881713
 
 ## Technology Stack and API Usage
-Angular
-Typescript
-Google Cloud Functions
-Google Firebase/Firestore
-Vimeo
-Twilio
-Sendgrid
-Stripe
+Angular  
+Typescript  
+Google Cloud Functions  
+Google Firebase/Firestore  
+Vimeo  
+Twilio  
+Sendgrid  
+Stripe  
 
 ## Sneak Peak at the Project
   *  *  *  *  *
