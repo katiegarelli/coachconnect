@@ -18,31 +18,31 @@ Stripe
   *  *  *  *  *
 Homepage
   *  *  *  *  *
-![alt text](img/img1.png?raw=true)
+![img1](img/img1.PNG?raw=true)
   *  *  *  *  *
 Coaches
   *  *  *  *  *
-![alt text](img/img2.png?raw=true)
+![img2](img/img2.PNG?raw=true)
   *  *  *  *  *
 Testimonials
   *  *  *  *  *
-![alt text](img/img3.png?raw=true)
+![img3](img/img3.PNG?raw=true)
   *  *  *  *  *
 User Account
   *  *  *  *  *
-![alt text](img/img4.png?raw=true)
+![img4](img/img4.PNG?raw=true)
   *  *  *  *  *
 Uploading Videos
   *  *  *  *  *
-![alt text](img/img5.png?raw=true)
+![img5](img/img5.PNG?raw=true)
   *  *  *  *  *
 Waiting on Review
   *  *  *  *  *
-![alt text](img/img6.png?raw=true)
+![img6](img/img6.PNG?raw=true)
   *  *  *  *  *
 Viewing Video Review
   *  *  *  *  *
-![alt text](img/img7.png?raw=true)
+![img7](img/img7.PNG?raw=true)
 
 ## Development server
 
